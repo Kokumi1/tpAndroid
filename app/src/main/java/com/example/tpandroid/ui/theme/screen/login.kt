@@ -1,6 +1,5 @@
 package com.example.tpandroid.ui.theme.screen
 
-import android.provider.ContactsContract
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -19,7 +18,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.example.tpandroid.ui.theme.screen.Home
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,12 +41,12 @@ fun Login() {
             TextField(
                 value = emailTextField.value, onValueChange = { email ->
                     emailTextField.value = email
-                }, placeholder = { Text(text = "je suis un placeholder") }
+                }, placeholder = { Text(text = "email") }
             )
 
             TextField(value = passwordTextFieldValue.value, onValueChange = { password ->
                 passwordTextFieldValue.value = password
-            })
+            }, placeholder={ Text(text="password")})
 
             Button(onClick = {
                 val firebaseAuth = Firebase.auth

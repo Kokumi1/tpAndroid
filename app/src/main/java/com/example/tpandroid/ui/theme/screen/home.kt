@@ -27,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.foundation.Image
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -121,13 +122,12 @@ fun Home(){
                     .weight(0.10f)
                     .background(Color.Green)) {
                     Row() {
-                        AsyncImage(
+                        Image(
                             modifier = Modifier.height(100.dp),
-                            model = ImageRequest.Builder(LocalContext.current)
-                                .data("https://images.unsplash.com/photo-1679678691007-d663208cebd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80")
-                                .build(),
+                            painter = painterResource(id = R.drawable.phil_collins),
                             contentDescription = ""
                         )
+
                         Text(text = "Image")
                     }
 
@@ -136,10 +136,9 @@ fun Home(){
 
                 Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
                     Row() {
-                        AsyncImage(modifier = Modifier.height(100.dp),
-                            model = ImageRequest.Builder(LocalContext.current)
-                                .data("https://images.unsplash.com/photo-1679678691007-d663208cebd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80")
-                                .build(),
+                        Image(
+                            modifier = Modifier.height(100.dp),
+                            painter = painterResource(id = R.drawable.acdc),
                             contentDescription = ""
                         )
                         Text(text = "Image")
@@ -154,11 +153,9 @@ fun Home(){
                     .weight(0.10f)
                     .background(Color.Green)) {
                     Row() {
-                        AsyncImage(
+                        Image(
                             modifier = Modifier.height(100.dp),
-                            model = ImageRequest.Builder(LocalContext.current)
-                                .data("https://images.unsplash.com/photo-1679678691007-d663208cebd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80")
-                                .build(),
+                            painter = painterResource(id = R.drawable.gazo),
                             contentDescription = ""
                         )
                         Text(text = "Image")
@@ -169,10 +166,9 @@ fun Home(){
 
                 Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
                     Row() {
-                        AsyncImage(modifier = Modifier.height(100.dp),
-                            model = ImageRequest.Builder(LocalContext.current)
-                                .data("https://images.unsplash.com/photo-1679678691007-d663208cebd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80")
-                                .build(),
+                        Image(
+                            modifier = Modifier.height(100.dp),
+                            painter = painterResource(id = R.drawable.peter_crowley),
                             contentDescription = ""
                         )
                         Text(text = "Image")
@@ -187,11 +183,9 @@ fun Home(){
                     .weight(0.10f)
                     .background(Color.Green)) {
                     Row() {
-                        AsyncImage(
+                        Image(
                             modifier = Modifier.height(100.dp),
-                            model = ImageRequest.Builder(LocalContext.current)
-                                .data("https://images.unsplash.com/photo-1679678691007-d663208cebd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80")
-                                .build(),
+                            painter = painterResource(id = R.drawable.sabaton),
                             contentDescription = ""
                         )
                         Text(text = "Image")
@@ -202,10 +196,9 @@ fun Home(){
 
                 Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
                     Row() {
-                        AsyncImage(modifier = Modifier.height(100.dp),
-                            model = ImageRequest.Builder(LocalContext.current)
-                                .data("https://images.unsplash.com/photo-1679678691007-d663208cebd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80")
-                                .build(),
+                        Image(
+                            modifier = Modifier.height(100.dp),
+                            painter = painterResource(id = R.drawable.telephone),
                             contentDescription = ""
                         )
                         Text(text = "Image")

@@ -15,8 +15,8 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             TpAndroidTheme {
+                Login()
                 Home()
-                //Signup()
             }
         }
     }

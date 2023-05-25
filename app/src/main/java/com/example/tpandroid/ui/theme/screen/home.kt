@@ -35,7 +35,7 @@ import com.example.tpandroid.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun home(){
+fun Home(){
     Scaffold(
         topBar = {
             TopAppBar(

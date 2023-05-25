@@ -11,11 +11,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.tpandroid.ui.theme.TpAndroidTheme
 //import com.example.tpandroid.ui.theme.Signup
-import com.example.tpandroid.ui.theme.screen.home
+import com.example.tpandroid.ui.theme.screen.Home
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -29,11 +28,10 @@ class MainActivity : ComponentActivity() {
         val firebaseFirestore = Firebase.firestore
 
 
-        setContent() {
-            TpAndroidTheme() {
-                home();
-                //Signup();
-                //le test
+        setContent {
+            TpAndroidTheme {
+                Home()
+                //Signup()
             }
         }
     }

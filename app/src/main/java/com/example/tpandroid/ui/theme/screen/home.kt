@@ -28,7 +28,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.Image
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -46,11 +51,11 @@ fun Home(){
 
                         Row() {
                             Icon(
-                                painter = painterResource(id = R.drawable.ic_time),
+                                painter = painterResource(id = R.drawable.ic_clock),
                                 contentDescription = " "
                             )
                             Icon(
-                                painter = painterResource(id = R.drawable.ic_clock),
+                                painter = painterResource(id = R.drawable.ic_setting),
                                 contentDescription = " "
                             )
                         }
@@ -99,6 +104,48 @@ fun Home(){
 
                     })
             }
+
+            BottomAppBar(
+                containerColor= Color.Black
+            ) {
+                Image(
+                    modifier = Modifier
+                        .height(80.dp)
+                        .width(80.dp),
+                    painter = painterResource(id = R.drawable.phil_collins),
+                    contentDescription = ""
+                )
+                Column() {
+                    Text(text = "Do you Remember", color = Color.White)
+                    Text(text = "Phil Collins", color = Color.White)
+                }
+                NavigationBarItem(
+                    selected = true,
+                    onClick = { },
+                    icon = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_tv),
+                            contentDescription = " "
+                        )
+
+                    })
+                var onPlay by remember { mutableStateOf(false) }
+                NavigationBarItem(
+                    selected = true,
+                    onClick = {
+                        onPlay = !onPlay
+                    },
+                    icon = {
+                        Icon(
+                            painter = painterResource(id =
+                                if(onPlay) R.drawable.ic_pause
+                                else R.drawable.ic_play
+                            ),
+                            contentDescription = " "
+                        )
+
+                    })
+            }
         }
 
     ) {
@@ -123,7 +170,9 @@ fun Home(){
                     .background(Color.Green)) {
                     Row() {
                         Image(
-                            modifier = Modifier.height(100.dp),
+                            modifier = Modifier
+                                .height(80.dp)
+                                .width(80.dp),
                             painter = painterResource(id = R.drawable.phil_collins),
                             contentDescription = ""
                         )
@@ -137,7 +186,9 @@ fun Home(){
                 Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
                     Row() {
                         Image(
-                            modifier = Modifier.height(100.dp),
+                            modifier = Modifier
+                                .height(80.dp)
+                                .width(80.dp),
                             painter = painterResource(id = R.drawable.acdc),
                             contentDescription = ""
                         )
@@ -154,7 +205,9 @@ fun Home(){
                     .background(Color.Green)) {
                     Row() {
                         Image(
-                            modifier = Modifier.height(100.dp),
+                            modifier = Modifier
+                                .height(80.dp)
+                                .width(80.dp),
                             painter = painterResource(id = R.drawable.gazo),
                             contentDescription = ""
                         )
@@ -167,7 +220,9 @@ fun Home(){
                 Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
                     Row() {
                         Image(
-                            modifier = Modifier.height(100.dp),
+                            modifier = Modifier
+                                .height(80.dp)
+                                .width(80.dp),
                             painter = painterResource(id = R.drawable.peter_crowley),
                             contentDescription = ""
                         )
@@ -184,7 +239,9 @@ fun Home(){
                     .background(Color.Green)) {
                     Row() {
                         Image(
-                            modifier = Modifier.height(100.dp),
+                            modifier = Modifier
+                                .height(80.dp)
+                                .width(80.dp),
                             painter = painterResource(id = R.drawable.sabaton),
                             contentDescription = ""
                         )
@@ -197,7 +254,9 @@ fun Home(){
                 Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
                     Row() {
                         Image(
-                            modifier = Modifier.height(100.dp),
+                            modifier = Modifier
+                                .height(80.dp)
+                                .width(80.dp),
                             painter = painterResource(id = R.drawable.telephone),
                             contentDescription = ""
                         )
@@ -217,16 +276,66 @@ fun Home(){
                     Row() {
                         AsyncImage(
                             modifier = Modifier
-                                .height(100.dp)
+                                .height(60.dp)
+                                .width(60.dp)
                                 .clip(CircleShape),
                             model = ImageRequest.Builder(LocalContext.current)
                                 .data("https://images.unsplash.com/photo-1679678691007-d663208cebd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80")
                                 .build(),
                             contentDescription = ""
                         )
-                        Text(text = "Pseudonym", textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+                        Column {
+                            Text(text = "NEW RELEASE FROM", modifier = Modifier.fillMaxWidth())
+                            Text(text = "Pseudonym", modifier = Modifier.fillMaxWidth())
+                        }
+
                     }
                 }
+
+            }
+            Row {
+                Card(onClick = {}, modifier = Modifier
+                    .weight(0.10f)
+                    .fillMaxWidth()) {
+                    Row() {
+                        AsyncImage(
+                            modifier = Modifier
+                                .height(120.dp)
+                                .width(120.dp),
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data("https://images.unsplash.com/photo-1679678691007-d663208cebd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80")
+                                .build(),
+                            contentDescription = ""
+                        )
+                        Column {
+                            Text(text = "Do you remember", modifier = Modifier.fillMaxWidth())
+                            Text(text = "Pseudonym", modifier = Modifier.fillMaxWidth())
+
+                            Row {
+                                Icon(
+                                    painter = painterResource(id =
+                                    R.drawable.ic_time
+                                    ),
+                                    contentDescription = " ",
+                                    modifier = Modifier.clickable {  }
+                                )
+                                Icon(
+                                    painter = painterResource(id =
+                                    R.drawable.ic_play
+                                    ),
+                                    contentDescription = " ",
+                                    modifier = Modifier.clickable {  }
+                                )
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            Text(text = "Your Heavy Rotation", Modifier.size(15.dp))
+
+            Row {
 
             }
         }

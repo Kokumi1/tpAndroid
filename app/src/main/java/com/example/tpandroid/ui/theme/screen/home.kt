@@ -49,7 +49,7 @@ fun Home(){
                 actions = {
                     IconButton(onClick = {}) {
 
-                        Row() {
+                        Row {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_clock),
                                 contentDescription = " "
@@ -66,7 +66,7 @@ fun Home(){
         },
         bottomBar = {
             NavigationBar(
-                containerColor = Color.Yellow,
+                containerColor = Color.Black,
 
                 ) {
                 NavigationBarItem(
@@ -115,7 +115,7 @@ fun Home(){
                     painter = painterResource(id = R.drawable.phil_collins),
                     contentDescription = ""
                 )
-                Column() {
+                Column {
                     Text(text = "Do you Remember", color = Color.White)
                     Text(text = "Phil Collins", color = Color.White)
                 }
@@ -168,7 +168,7 @@ fun Home(){
                 Card(onClick = {}, modifier = Modifier
                     .weight(0.10f)
                     .background(Color.Green)) {
-                    Row() {
+                    Row {
                         Image(
                             modifier = Modifier
                                 .height(80.dp)
@@ -176,7 +176,6 @@ fun Home(){
                             painter = painterResource(id = R.drawable.phil_collins),
                             contentDescription = ""
                         )
-
                         Text(text = "Image")
                     }
 
@@ -184,7 +183,7 @@ fun Home(){
                 Spacer(modifier = Modifier.padding(12.dp))
 
                 Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
-                    Row() {
+                    Row {
                         Image(
                             modifier = Modifier
                                 .height(80.dp)
@@ -203,7 +202,7 @@ fun Home(){
                 Card(onClick = {}, modifier = Modifier
                     .weight(0.10f)
                     .background(Color.Green)) {
-                    Row() {
+                    Row {
                         Image(
                             modifier = Modifier
                                 .height(80.dp)
@@ -218,7 +217,7 @@ fun Home(){
                 Spacer(modifier = Modifier.padding(12.dp))
 
                 Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
-                    Row() {
+                    Row {
                         Image(
                             modifier = Modifier
                                 .height(80.dp)
@@ -237,7 +236,7 @@ fun Home(){
                 Card(onClick = {}, modifier = Modifier
                     .weight(0.10f)
                     .background(Color.Green)) {
-                    Row() {
+                    Row {
                         Image(
                             modifier = Modifier
                                 .height(80.dp)
@@ -252,7 +251,7 @@ fun Home(){
                 Spacer(modifier = Modifier.padding(12.dp))
 
                 Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
-                    Row() {
+                    Row {
                         Image(
                             modifier = Modifier
                                 .height(80.dp)
@@ -273,7 +272,7 @@ fun Home(){
             ) {
 
                 Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
-                    Row() {
+                    Row {
                         AsyncImage(
                             modifier = Modifier
                                 .height(60.dp)
@@ -297,7 +296,7 @@ fun Home(){
                 Card(onClick = {}, modifier = Modifier
                     .weight(0.10f)
                     .fillMaxWidth()) {
-                    Row() {
+                    Row {
                         AsyncImage(
                             modifier = Modifier
                                 .height(120.dp)
@@ -349,6 +348,6 @@ fun Chip(text: String, onClick: () -> Unit) {
         shape = RoundedCornerShape(16.dp),
         modifier = Modifier.clickable(onClick = onClick)
     ) {
-        Text(text = text, modifier = Modifier.padding(horizontal = 15.dp, vertical = 4.dp),)
+        Text(text = text, modifier = Modifier.padding(horizontal = 15.dp, vertical = 4.dp))
     }
 }

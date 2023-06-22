@@ -45,7 +45,6 @@ import com.example.tpandroid.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Home() {
-    val navController = rememberNavController()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -68,95 +67,57 @@ fun Home() {
                 }
             )
         },
-        bottomBar = {
-            NavigationBar(
-                containerColor = Color.Black,
 
-                ) {
-                NavigationBarItem(
-                    selected = true,
-                    onClick = { navController.navigate("home") },
-                    label = { Text(text = "Home") },
-                    icon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_home),
-                            contentDescription = " "
-                        )
 
-                    })
-                NavigationBarItem(
-                    selected = true,
-                    onClick = { navController.navigate("search") },
-                    label = { Text(text = "Search") },
-                    icon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_search),
-                            contentDescription = " "
-                        )
-
-                    })
-
-                NavigationBarItem(
-                    selected = true,
-                    onClick = { navController.navigate("library") },
-                    label = { Text(text = "Library") },
-                    icon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_library_music),
-                            contentDescription = " "
-                        )
-
-                    })
+        /*BottomAppBar(
+            containerColor = Color.Black
+        ) {
+            Image(
+                modifier = Modifier
+                    .height(80.dp)
+                    .width(80.dp),
+                painter = painterResource(id = R.drawable.phil_collins),
+                contentDescription = ""
+            )
+            Column {
+                Text(text = "Do you Remember", color = Color.White)
+                Text(text = "Phil Collins", color = Color.White)
             }
+            NavigationBarItem(
+                selected = true,
+                onClick = { },
+                icon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_tv),
+                        contentDescription = " "
+                    )
 
-            /*BottomAppBar(
-                containerColor = Color.Black
-            ) {
-                Image(
-                    modifier = Modifier
-                        .height(80.dp)
-                        .width(80.dp),
-                    painter = painterResource(id = R.drawable.phil_collins),
-                    contentDescription = ""
-                )
-                Column {
-                    Text(text = "Do you Remember", color = Color.White)
-                    Text(text = "Phil Collins", color = Color.White)
-                }
-                NavigationBarItem(
-                    selected = true,
-                    onClick = { },
-                    icon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_tv),
-                            contentDescription = " "
-                        )
+                })
+            var onPlay by remember { mutableStateOf(false) }
+            NavigationBarItem(
+                selected = true,
+                onClick = {
+                    onPlay = !onPlay
+                },
+                icon = {
+                    Icon(
+                        painter = painterResource(
+                            id =
+                            if (onPlay) R.drawable.ic_pause
+                            else R.drawable.ic_play
+                        ),
+                        contentDescription = " "
+                    )
 
-                    })
-                var onPlay by remember { mutableStateOf(false) }
-                NavigationBarItem(
-                    selected = true,
-                    onClick = {
-                        onPlay = !onPlay
-                    },
-                    icon = {
-                        Icon(
-                            painter = painterResource(
-                                id =
-                                if (onPlay) R.drawable.ic_pause
-                                else R.drawable.ic_play
-                            ),
-                            contentDescription = " "
-                        )
-
-                    })
-            }*/
-        }
-
+                })
+        }*/
     ) {
         Column(modifier = Modifier.padding(it)) {
 
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
                 Chip(text = "Tag 1", onClick = {})
                 Spacer(modifier = Modifier.width(12.dp))
                 Chip(text = "Tag 2", onClick = {})
@@ -349,19 +310,6 @@ fun Home() {
 
             Row {
 
-            }
-        }
-
-
-        NavHost(navController = navController, startDestination = "home" ){
-            composable("home"){
-                Home()
-            }
-            composable("search"){
-                Search()
-            }
-            composable("library"){
-                Text(text = "là ya pas")
             }
         }
     }

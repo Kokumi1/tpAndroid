@@ -47,7 +47,6 @@ import com.example.tpandroid.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Search() {
-    val navController = rememberNavController()
     var searchText by remember { mutableStateOf("") }
     Scaffold(
         topBar = {
@@ -97,47 +96,6 @@ fun Search() {
                     }
                 }
             )
-        },
-        bottomBar = {
-            NavigationBar(
-                containerColor = Color.Black,
-
-                ) {
-                NavigationBarItem(
-                    selected = true,
-                    onClick = { navController.navigate("home") },
-                    label = { Text(text = "Home") },
-                    icon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_home),
-                            contentDescription = " "
-                        )
-
-                    })
-                NavigationBarItem(
-                    selected = true,
-                    onClick = { navController.navigate("search") },
-                    label = { Text(text = "Search") },
-                    icon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_search),
-                            contentDescription = " "
-                        )
-
-                    })
-
-                NavigationBarItem(
-                    selected = true,
-                    onClick = { navController.navigate("library") },
-                    label = { Text(text = "Library") },
-                    icon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_library_music),
-                            contentDescription = " "
-                        )
-
-                    })
-            }
         }
     )
     {
@@ -155,8 +113,10 @@ fun Search() {
                         contentDescription = ""
                     )
                     Column {
-                        Text(text = if(searchText=="") "Pseudonym" else searchText,
-                            modifier = Modifier.fillMaxWidth())
+                        Text(
+                            text = if (searchText == "") "Pseudonym" else searchText,
+                            modifier = Modifier.fillMaxWidth()
+                        )
                         Text(text = "Artist", modifier = Modifier.fillMaxWidth())
                     }
                     IconButton(onClick = { }) {
@@ -169,7 +129,7 @@ fun Search() {
                 }
             }
             Text(text = "Featuring $searchText", modifier = Modifier.size(10.dp))
-            LazyRow(modifier = Modifier.fillMaxWidth()){
+            LazyRow(modifier = Modifier.fillMaxWidth()) {
                 item {
                     Column {
                         Image(
@@ -182,7 +142,7 @@ fun Search() {
                         Text(text = "Phil Collins")
                     }
                 }
-                item{
+                item {
                     Column {
                         Image(
                             modifier = Modifier
@@ -194,7 +154,7 @@ fun Search() {
                         Text(text = "ACDC")
                     }
                 }
-                item{
+                item {
                     Column {
                         Image(
                             modifier = Modifier
@@ -206,7 +166,7 @@ fun Search() {
                         Text(text = "Gazo")
                     }
                 }
-                item{
+                item {
                     Column {
                         Image(
                             modifier = Modifier
@@ -219,31 +179,24 @@ fun Search() {
                     }
                 }
             }
-            LazyColumn(modifier = Modifier.fillMaxWidth()){
-                items(5){
+            LazyColumn(modifier = Modifier.fillMaxWidth()) {
+                items(5) {
                     Row {
-                       Image(painter = painterResource(id = R.drawable.peter_crowley),
-                           contentDescription = "songs image",
-                       modifier = Modifier.width(120.dp))
+                        Image(
+                            painter = painterResource(id = R.drawable.peter_crowley),
+                            contentDescription = "songs image",
+                            modifier = Modifier.width(120.dp)
+                        )
                         Column {
                             Text(text = "In the depths of the Church")
                             Text(text = "Songs - Peter Crowley")
                         }
-                        Icon(painter = painterResource(id = R.drawable.ic_continue), contentDescription = "action")
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_continue),
+                            contentDescription = "action"
+                        )
                     }
                 }
-            }
-        }
-
-        NavHost(navController = navController, startDestination = "search" ){
-            composable("home"){
-                Home()
-            }
-            composable("search"){
-                Search()
-            }
-            composable("library"){
-                Text(text = "là ya pas")
             }
         }
     }

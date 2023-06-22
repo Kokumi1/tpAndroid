@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import com.example.tpandroid.ui.theme.TpAndroidTheme
 import com.example.tpandroid.ui.theme.screen.Login
 import com.example.tpandroid.ui.theme.screen.Home
+import com.example.tpandroid.ui.theme.screen.Main
 import com.example.tpandroid.ui.theme.screen.Search
 
 
@@ -16,8 +17,9 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             TpAndroidTheme {
-                //Login()
-                Home()
+                //Main()
+                Login()
+                //Home()
                 //Search()
             }
         }

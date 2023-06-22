@@ -22,6 +22,7 @@ import com.google.firebase.ktx.Firebase
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Login() {
+
     val emailTextField = remember {
         mutableStateOf(TextFieldValue(""))
     }
@@ -69,6 +70,8 @@ fun Login() {
             }) {
                 Text(text = "register")
             }
+
+
         }
 
 

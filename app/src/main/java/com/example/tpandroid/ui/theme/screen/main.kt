@@ -64,7 +64,7 @@ fun Main(){
             }
     }
     ) {
-        NavHost(navController = navController, startDestination = "login" ){
+        NavHost(navController = navController, startDestination = "home" ){
             composable("home"){
                 Home()
             }

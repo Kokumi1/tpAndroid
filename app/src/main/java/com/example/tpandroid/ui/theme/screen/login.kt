@@ -1,6 +1,7 @@
 package com.example.tpandroid.ui.theme.screen
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -12,10 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -29,15 +29,10 @@ fun Login() {
     val passwordTextFieldValue = remember {
         mutableStateOf(TextFieldValue(""))
     }
-    val navController = rememberNavController()
-
-    NavHost(navController = navController, startDestination = "login") {
-        composable("home") { Home() }
-    }
-
-
-
     Scaffold {
+        val context = LocalContext.current
+        FirebaseApp.initializeApp(context)
+
         Column(modifier = Modifier.padding(it)) {
             TextField(
                 value = emailTextField.value, onValueChange = { email ->
@@ -53,22 +48,37 @@ fun Login() {
                 val firebaseAuth = Firebase.auth
                 Log.i("Auth", "register begin")
 
-                firebaseAuth.createUserWithEmailAndPassword(
+                    /*firebaseAuth.createUserWithEmailAndPassword(
                     emailTextField.value.text, passwordTextFieldValue.value.text
                 )
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Log.i("Auth", "login complete!!")
-                            navController.navigate("home")
+
 
                         } else if (task.isCanceled) {
                             Log.e("Auth", "What are you doing?!")
                         }
                     }.addOnFailureListener {
                         Log.e("Auth", "mission failed!")
+                    }*/
+                firebaseAuth.signInWithEmailAndPassword(
+                    emailTextField.value.text, passwordTextFieldValue.value.text)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                           Log.i("AUTH","Login complete")
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(
+                                context,
+                                "Authentication failed.",
+                                Toast.LENGTH_SHORT,
+                            ).show()
+                        }
                     }
             }) {
-                Text(text = "register")
+                Text(text = "login")
             }
 
 

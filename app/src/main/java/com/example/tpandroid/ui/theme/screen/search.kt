@@ -36,6 +36,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.tpandroid.R
@@ -44,49 +47,52 @@ import com.example.tpandroid.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Search() {
+    val navController = rememberNavController()
     var searchText by remember { mutableStateOf("") }
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text(text = "") },
                 actions = {
-                    Row {
+                    Column {
+                        Row {
 
-                        TextField(value = searchText,
-                            onValueChange = { searchText = it },
-                            modifier = Modifier.padding(4.dp),
-                            shape = RoundedCornerShape(8.dp),
-                            trailingIcon = {
-                                IconButton(onClick = { searchText = "" }) {
+                            TextField(value = searchText,
+                                onValueChange = { searchText = it },
+                                modifier = Modifier.padding(4.dp),
+                                shape = RoundedCornerShape(8.dp),
+                                trailingIcon = {
+                                    IconButton(onClick = { searchText = "" }) {
+                                        Icon(
+                                            painter = painterResource(id = R.drawable.ic_clear),
+                                            contentDescription = ""
+                                        )
+                                    }
+                                },
+                                leadingIcon = {
                                     Icon(
-                                        painter = painterResource(id = R.drawable.ic_clear),
-                                        contentDescription = ""
+                                        painter = painterResource(id = R.drawable.ic_search),
+                                        contentDescription = "search"
                                     )
                                 }
-                            },
-                            leadingIcon = {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ic_search),
-                                    contentDescription = "search"
-                                )
+                            )
+                            ClickableText(
+                                text = AnnotatedString("Cancel"),
+                                onClick = { searchText = "" })
+                        }
+                        LazyRow {
+                            items(5) { index ->
+                                ClickableText(text = AnnotatedString(
+                                    when (index) {
+                                        0 -> "Top"
+                                        1 -> "Artist"
+                                        2 -> "Songs"
+                                        3 -> "Playlists"
+                                        4 -> "Album"
+                                        else -> "Top"
+                                    }
+                                ), onClick = {})
                             }
-                        )
-                        ClickableText(
-                            text = AnnotatedString("Cancel"),
-                            onClick = { searchText = "" })
-                    }
-                    LazyRow {
-                        items(5) { index ->
-                            ClickableText(text = AnnotatedString(
-                                when (index) {
-                                    0 -> "Top"
-                                    1 -> "Artist"
-                                    2 -> "Songs"
-                                    3 -> "Playlists"
-                                    4 -> "Album"
-                                    else -> "Top"
-                                }
-                            ), onClick = {})
                         }
                     }
                 }
@@ -99,7 +105,7 @@ fun Search() {
                 ) {
                 NavigationBarItem(
                     selected = true,
-                    onClick = { },
+                    onClick = { navController.navigate("home") },
                     label = { Text(text = "Home") },
                     icon = {
                         Icon(
@@ -110,7 +116,7 @@ fun Search() {
                     })
                 NavigationBarItem(
                     selected = true,
-                    onClick = { },
+                    onClick = { navController.navigate("search") },
                     label = { Text(text = "Search") },
                     icon = {
                         Icon(
@@ -122,7 +128,7 @@ fun Search() {
 
                 NavigationBarItem(
                     selected = true,
-                    onClick = { },
+                    onClick = { navController.navigate("library") },
                     label = { Text(text = "Library") },
                     icon = {
                         Icon(
@@ -216,7 +222,9 @@ fun Search() {
             LazyColumn(modifier = Modifier.fillMaxWidth()){
                 items(5){
                     Row {
-                       Image(painter = painterResource(id = R.drawable.peter_crowley), contentDescription = "songs image")
+                       Image(painter = painterResource(id = R.drawable.peter_crowley),
+                           contentDescription = "songs image",
+                       modifier = Modifier.width(120.dp))
                         Column {
                             Text(text = "In the depths of the Church")
                             Text(text = "Songs - Peter Crowley")
@@ -224,6 +232,18 @@ fun Search() {
                         Icon(painter = painterResource(id = R.drawable.ic_continue), contentDescription = "action")
                     }
                 }
+            }
+        }
+
+        NavHost(navController = navController, startDestination = "search" ){
+            composable("home"){
+                Home()
+            }
+            composable("search"){
+                Search()
+            }
+            composable("library"){
+                Text(text = "là ya pas")
             }
         }
     }

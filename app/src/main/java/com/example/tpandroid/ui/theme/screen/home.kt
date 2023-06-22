@@ -35,13 +35,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.tpandroid.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Home(){
+fun Home() {
+    val navController = rememberNavController()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -71,7 +75,7 @@ fun Home(){
                 ) {
                 NavigationBarItem(
                     selected = true,
-                    onClick = { },
+                    onClick = { navController.navigate("home") },
                     label = { Text(text = "Home") },
                     icon = {
                         Icon(
@@ -82,7 +86,7 @@ fun Home(){
                     })
                 NavigationBarItem(
                     selected = true,
-                    onClick = { },
+                    onClick = { navController.navigate("search") },
                     label = { Text(text = "Search") },
                     icon = {
                         Icon(
@@ -94,7 +98,7 @@ fun Home(){
 
                 NavigationBarItem(
                     selected = true,
-                    onClick = { },
+                    onClick = { navController.navigate("library") },
                     label = { Text(text = "Library") },
                     icon = {
                         Icon(
@@ -105,8 +109,8 @@ fun Home(){
                     })
             }
 
-            BottomAppBar(
-                containerColor= Color.Black
+            /*BottomAppBar(
+                containerColor = Color.Black
             ) {
                 Image(
                     modifier = Modifier
@@ -137,23 +141,22 @@ fun Home(){
                     },
                     icon = {
                         Icon(
-                            painter = painterResource(id =
-                                if(onPlay) R.drawable.ic_pause
+                            painter = painterResource(
+                                id =
+                                if (onPlay) R.drawable.ic_pause
                                 else R.drawable.ic_play
                             ),
                             contentDescription = " "
                         )
 
                     })
-            }
+            }*/
         }
 
     ) {
-
-
         Column(modifier = Modifier.padding(it)) {
 
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center){
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                 Chip(text = "Tag 1", onClick = {})
                 Spacer(modifier = Modifier.width(12.dp))
                 Chip(text = "Tag 2", onClick = {})
@@ -165,9 +168,11 @@ fun Home(){
             Spacer(modifier = Modifier.padding(12.dp))
 
             Row(modifier = Modifier.padding(horizontal = 12.dp)) {
-                Card(onClick = {}, modifier = Modifier
-                    .weight(0.10f)
-                    .background(Color.Green)) {
+                Card(
+                    onClick = {}, modifier = Modifier
+                        .weight(0.10f)
+                        .background(Color.Green)
+                ) {
                     Row {
                         Image(
                             modifier = Modifier
@@ -199,9 +204,11 @@ fun Home(){
             Spacer(modifier = Modifier.padding(top = 6.dp))
 
             Row(modifier = Modifier.padding(horizontal = 12.dp)) {
-                Card(onClick = {}, modifier = Modifier
-                    .weight(0.10f)
-                    .background(Color.Green)) {
+                Card(
+                    onClick = {}, modifier = Modifier
+                        .weight(0.10f)
+                        .background(Color.Green)
+                ) {
                     Row {
                         Image(
                             modifier = Modifier
@@ -233,9 +240,11 @@ fun Home(){
             Spacer(modifier = Modifier.padding(top = 6.dp))
 
             Row(modifier = Modifier.padding(horizontal = 12.dp)) {
-                Card(onClick = {}, modifier = Modifier
-                    .weight(0.10f)
-                    .background(Color.Green)) {
+                Card(
+                    onClick = {}, modifier = Modifier
+                        .weight(0.10f)
+                        .background(Color.Green)
+                ) {
                     Row {
                         Image(
                             modifier = Modifier
@@ -293,9 +302,11 @@ fun Home(){
 
             }
             Row {
-                Card(onClick = {}, modifier = Modifier
-                    .weight(0.10f)
-                    .fillMaxWidth()) {
+                Card(
+                    onClick = {}, modifier = Modifier
+                        .weight(0.10f)
+                        .fillMaxWidth()
+                ) {
                     Row {
                         AsyncImage(
                             modifier = Modifier
@@ -312,18 +323,20 @@ fun Home(){
 
                             Row {
                                 Icon(
-                                    painter = painterResource(id =
-                                    R.drawable.ic_time
+                                    painter = painterResource(
+                                        id =
+                                        R.drawable.ic_time
                                     ),
                                     contentDescription = " ",
-                                    modifier = Modifier.clickable {  }
+                                    modifier = Modifier.clickable { }
                                 )
                                 Icon(
-                                    painter = painterResource(id =
-                                    R.drawable.ic_play
+                                    painter = painterResource(
+                                        id =
+                                        R.drawable.ic_play
                                     ),
                                     contentDescription = " ",
-                                    modifier = Modifier.clickable {  }
+                                    modifier = Modifier.clickable { }
                                 )
                             }
                         }
@@ -339,6 +352,18 @@ fun Home(){
             }
         }
 
+
+        NavHost(navController = navController, startDestination = "home" ){
+            composable("home"){
+                Home()
+            }
+            composable("search"){
+                Search()
+            }
+            composable("library"){
+                Text(text = "là ya pas")
+            }
+        }
     }
 }
 

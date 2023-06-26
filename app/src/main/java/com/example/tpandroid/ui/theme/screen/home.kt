@@ -49,18 +49,20 @@ fun Home() {
                 title = { Text(text = "Good Morning") },
                 actions = {
                     IconButton(onClick = {}) {
-
                         Row {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_clock),
                                 contentDescription = " "
                             )
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_setting),
-                                contentDescription = " "
-                            )
                         }
 
+                    }
+                    IconButton(onClick = {}) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_setting),
+                            modifier = Modifier.padding(start= 2.dp),
+                            contentDescription = " "
+                        )
                     }
                 }
             )

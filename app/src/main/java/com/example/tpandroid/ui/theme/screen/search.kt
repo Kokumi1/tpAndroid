@@ -20,6 +20,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -35,6 +36,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.tpandroid.R
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -42,6 +44,7 @@ import com.example.tpandroid.R
 @Composable
 fun Search() {
     var searchText by remember { mutableStateOf("") }
+    Scaffold {
     Column(modifier = Modifier.background(Color.White)) {
         Row(modifier = Modifier.padding(top = 5.dp)) {
             TextField(value = searchText,
@@ -117,10 +120,13 @@ fun Search() {
             }
 
         }
-        Text(text = "Featuring $searchText", modifier = Modifier.size(10.dp))
+
+        Text(text = "Featuring $searchText",
+            modifier = Modifier.size(width = 350.dp, height = 25.dp).fillMaxWidth().padding(start=10.dp),
+        fontSize = 20.sp)
         LazyRow(modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 10.dp)) {
+            .padding(start = 10.dp, top = 10.dp)) {
             items(5) { index ->
                 Column {
                     Image(
@@ -155,15 +161,15 @@ fun Search() {
         }
         LazyColumn(modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 10.dp)) {
+            .padding(start = 10.dp,top=20.dp)) {
             items(5) {
-                Row {
+                Row(modifier = Modifier.padding(bottom=10.dp)) {
                     Image(
                         painter = painterResource(id = R.drawable.peter_crowley),
                         contentDescription = "songs image",
                         modifier = Modifier.width(120.dp)
                     )
-                    Column {
+                    Column(modifier = Modifier.padding(start=10.dp)) {
                         Text(text = "In the depths of the Church")
                         Text(text = "Songs - Peter Crowley")
                     }
@@ -181,6 +187,7 @@ fun Search() {
                 }
             }
         }
+    }
     }
 }
 

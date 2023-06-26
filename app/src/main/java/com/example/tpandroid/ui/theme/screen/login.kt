@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -25,7 +26,7 @@ import com.google.firebase.ktx.Firebase
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Login() {
-
+    val navController = rememberNavController()
     val emailTextField = remember {
         mutableStateOf(TextFieldValue(""))
     }
@@ -62,6 +63,7 @@ fun Login() {
                         if (task.isSuccessful) {
                             // Sign in success, update UI with the signed-in user's information
                            Log.i("AUTH","Login complete")
+                            navController.navigate("home")
 
                         } else {
                             // If sign in fails, display a message to the user.

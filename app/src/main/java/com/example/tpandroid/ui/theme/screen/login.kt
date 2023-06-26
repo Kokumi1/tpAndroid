@@ -16,9 +16,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
+import com.example.tpandroid.R
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -27,6 +30,7 @@ import com.google.firebase.ktx.Firebase
 @Composable
 fun Login() {
     val navController = rememberNavController()
+    val failedResource = stringResource(id = R.string.login_failed)
     val emailTextField = remember {
         mutableStateOf(TextFieldValue(""))
     }
@@ -45,12 +49,12 @@ fun Login() {
                 value = emailTextField.value, onValueChange = { email ->
                     emailTextField.value = email
 
-                }, placeholder = { Text(text = "email") }
+                }, placeholder = { Text(text = stringResource(id = R.string.login_email)) }
             )
 
             TextField(value = passwordTextFieldValue.value, onValueChange = { password ->
                 passwordTextFieldValue.value = password
-            }, placeholder={ Text(text="password")})
+            }, placeholder={ Text(text= stringResource(id = R.string.login_password))})
             Spacer(modifier = Modifier.padding(12.dp))
 
             Button(onClick = {
@@ -69,13 +73,13 @@ fun Login() {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(
                                 context,
-                                "Authentication failed.",
+                                failedResource,
                                 Toast.LENGTH_SHORT,
                             ).show()
                         }
                     }
             }) {
-                Text(text = "login")
+                Text(text = stringResource(id = R.string.login_login_button))
             }
             Spacer(modifier = Modifier.padding(20.dp))
 
@@ -94,9 +98,14 @@ fun Login() {
                         Log.e("Auth", "mission failed!")
                     }
             }){
-                Text(text = "register")
+                Text(text = stringResource(id = R.string.login_register_button))
             }
 
         }
     }
+}
+@Preview
+@Composable
+fun PreviewLogin() {
+    Login()
 }

@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">tpAndroid</string>
+    <string name="home_meeting">Good Morning</string>
+    <string name="home_new">NEW RELEASE FROM</string>
+    <string name="home_rotation">Your Heavy Rotation</string>
+
+    <string name="login_email">email</string>
+    <string name="login_password">password</string>
+    <string name="login_login_button">Login</string>
+    <string name="login_register_button">Register</string>
+    <string name="login_failed">Login Failed</string>
+
+    <string name="search_cancel">Cancel</string>
+    <string name="search_top">Top</string>
+    <string name="search_artist">Artist</string>
+    <string name="search_songs">Songs</string>
+    <string name="search_playlists">Playlists</string>
+    <string name="search_album">Album</string>
+    <string name="search_featuring">Featuring</string>
 </resources>

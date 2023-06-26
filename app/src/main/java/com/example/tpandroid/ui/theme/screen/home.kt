@@ -33,6 +33,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -46,7 +47,7 @@ fun Home() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Good Morning") },
+                title = { Text(text = stringResource(id = R.string.home_meeting)) },
                 actions = {
                     IconButton(onClick = {}) {
                         Row {
@@ -201,7 +202,7 @@ fun Home() {
                         )
                         Column {
                             Text(
-                                text = "NEW RELEASE FROM", modifier = Modifier.fillMaxWidth(),
+                                text = stringResource(id = R.string.home_new), modifier = Modifier.fillMaxWidth(),
                                 color = Color.White
                             )
                             Text(
@@ -282,7 +283,7 @@ fun Home() {
             }
 
             Text(
-                text = "Your Heavy Rotation",
+                text = stringResource(id = R.string.home_rotation),
                 fontSize = 20.sp,
                 color = Color.White,
                 modifier = Modifier

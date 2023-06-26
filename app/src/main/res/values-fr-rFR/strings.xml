@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">tpAndroid</string>
+    <string name="home_meeting">Bonjour</string>
+    <string name="home_new">NOUVEAUTE DE</string>
+    <string name="home_rotation">Votre rotation</string>
+    <string name="login_email">e-mail</string>
+    <string name="login_password">mot de passe</string>
+    <string name="login_login_button">Authentification</string>
+    <string name="login_register_button">Inscription</string>
+    <string name="login_failed">Echec de l\'authentification</string>
+    <string name="search_cancel">Annulé</string>
+    <string name="search_top">Top</string>
+    <string name="search_artist">Artiste</string>
+    <string name="search_songs">Musique</string>
+    <string name="search_playlists">Playlist</string>
+    <string name="search_album">Album</string>
+    <string name="search_featuring">Featuring</string>
+</resources>

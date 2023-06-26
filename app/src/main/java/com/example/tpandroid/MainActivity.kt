@@ -8,9 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tpandroid.ui.theme.TpAndroidTheme
 import com.example.tpandroid.ui.theme.screen.Login
-import com.example.tpandroid.ui.theme.screen.Home
 import com.example.tpandroid.ui.theme.screen.Main
-import com.example.tpandroid.ui.theme.screen.Search
 
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +20,7 @@ class MainActivity : ComponentActivity() {
             TpAndroidTheme {
                 val navController = rememberNavController()
 
-                NavHost(navController = navController, startDestination = "login") {
+                NavHost(navController = navController, startDestination = "home") {
                     composable("home") { Main() }
                     composable("login"){ Login() }
                 }

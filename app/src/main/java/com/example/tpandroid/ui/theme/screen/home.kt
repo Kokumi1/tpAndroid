@@ -16,8 +16,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -28,16 +26,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement.SpaceBetween
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.tpandroid.R
@@ -67,8 +65,6 @@ fun Home() {
                 }
             )
         },
-
-
         /*BottomAppBar(
             containerColor = Color.Black
         ) {
@@ -91,7 +87,6 @@ fun Home() {
                         painter = painterResource(id = R.drawable.ic_tv),
                         contentDescription = " "
                     )
-
                 })
             var onPlay by remember { mutableStateOf(false) }
             NavigationBarItem(
@@ -108,11 +103,14 @@ fun Home() {
                         ),
                         contentDescription = " "
                     )
-
                 })
         }*/
     ) {
-        Column(modifier = Modifier.padding(it)) {
+        Column(
+            modifier = Modifier
+                .padding(it)
+                .background(Color.Black)
+        ) {
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -128,108 +126,54 @@ fun Home() {
 
             Spacer(modifier = Modifier.padding(12.dp))
 
-            Row(modifier = Modifier.padding(horizontal = 12.dp)) {
-                Card(
-                    onClick = {}, modifier = Modifier
-                        .weight(0.10f)
-                        .background(Color.Green)
-                ) {
-                    Row {
-                        Image(
-                            modifier = Modifier
-                                .height(80.dp)
-                                .width(80.dp),
-                            painter = painterResource(id = R.drawable.phil_collins),
-                            contentDescription = ""
-                        )
-                        Text(text = "Image")
-                    }
-
-                }
-                Spacer(modifier = Modifier.padding(12.dp))
-
-                Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
-                    Row {
-                        Image(
-                            modifier = Modifier
-                                .height(80.dp)
-                                .width(80.dp),
-                            painter = painterResource(id = R.drawable.acdc),
-                            contentDescription = ""
-                        )
-                        Text(text = "Image")
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.padding(top = 6.dp))
-
-            Row(modifier = Modifier.padding(horizontal = 12.dp)) {
-                Card(
-                    onClick = {}, modifier = Modifier
-                        .weight(0.10f)
-                        .background(Color.Green)
-                ) {
-                    Row {
-                        Image(
-                            modifier = Modifier
-                                .height(80.dp)
-                                .width(80.dp),
-                            painter = painterResource(id = R.drawable.gazo),
-                            contentDescription = ""
-                        )
-                        Text(text = "Image")
-                    }
-
-                }
-                Spacer(modifier = Modifier.padding(12.dp))
-
-                Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
-                    Row {
-                        Image(
-                            modifier = Modifier
-                                .height(80.dp)
-                                .width(80.dp),
-                            painter = painterResource(id = R.drawable.peter_crowley),
-                            contentDescription = ""
-                        )
-                        Text(text = "Image")
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.padding(top = 6.dp))
-
-            Row(modifier = Modifier.padding(horizontal = 12.dp)) {
-                Card(
-                    onClick = {}, modifier = Modifier
-                        .weight(0.10f)
-                        .background(Color.Green)
-                ) {
-                    Row {
-                        Image(
-                            modifier = Modifier
-                                .height(80.dp)
-                                .width(80.dp),
-                            painter = painterResource(id = R.drawable.sabaton),
-                            contentDescription = ""
-                        )
-                        Text(text = "Image")
-                    }
-
-                }
-                Spacer(modifier = Modifier.padding(12.dp))
-
-                Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
-                    Row {
-                        Image(
-                            modifier = Modifier
-                                .height(80.dp)
-                                .width(80.dp),
-                            painter = painterResource(id = R.drawable.telephone),
-                            contentDescription = ""
-                        )
-                        Text(text = "Image")
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2)
+            ) {
+                items(6) { index ->
+                    Card(
+                        onClick = {}, modifier = Modifier
+                            .weight(0.10f)
+                    ) {
+                        Row {
+                            Image(
+                                modifier = Modifier
+                                    .height(80.dp)
+                                    .width(80.dp),
+                                painter = painterResource(
+                                    id =
+                                    when (index) {
+                                        0 -> R.drawable.phil_collins
+                                        1 -> R.drawable.acdc
+                                        2 -> R.drawable.gazo
+                                        3 -> R.drawable.peter_crowley
+                                        4 -> R.drawable.sabaton
+                                        5 -> R.drawable.telephone
+                                        else -> R.drawable.phil_collins
+                                    }
+                                ),
+                                contentDescription = ""
+                            )
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(80.dp)
+                                    .padding(8.dp),
+                                contentAlignment = Alignment.CenterStart
+                            ) {
+                                Text(
+                                    text =
+                                    when (index) {
+                                        0 -> "Phil Collins"
+                                        1 -> "ACDC"
+                                        2 -> "Gazo"
+                                        3 -> "Peter Crowley"
+                                        4 -> "Sabaton"
+                                        5 -> "Téléphone"
+                                        else -> "Phil Collins"
+                                    }
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -242,7 +186,7 @@ fun Home() {
             ) {
 
                 Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
-                    Row {
+                    Row(modifier = Modifier.background(Color.Black)) {
                         AsyncImage(
                             modifier = Modifier
                                 .height(60.dp)
@@ -254,19 +198,27 @@ fun Home() {
                             contentDescription = ""
                         )
                         Column {
-                            Text(text = "NEW RELEASE FROM", modifier = Modifier.fillMaxWidth())
-                            Text(text = "Pseudonym", modifier = Modifier.fillMaxWidth())
+                            Text(
+                                text = "NEW RELEASE FROM", modifier = Modifier.fillMaxWidth(),
+                                color = Color.White
+                            )
+                            Text(
+                                text = "Pseudonym", modifier = Modifier.fillMaxWidth(),
+                                color = Color.White
+                            )
                         }
 
                     }
                 }
 
             }
+            Spacer(modifier = Modifier.padding(top = 6.dp))
             Row {
                 Card(
                     onClick = {}, modifier = Modifier
                         .weight(0.10f)
                         .fillMaxWidth()
+                    //.background(Color.DarkGray)
                 ) {
                     Row {
                         AsyncImage(
@@ -278,18 +230,37 @@ fun Home() {
                                 .build(),
                             contentDescription = ""
                         )
-                        Column {
-                            Text(text = "Do you remember", modifier = Modifier.fillMaxWidth())
-                            Text(text = "Pseudonym", modifier = Modifier.fillMaxWidth())
+                        Column(
+                            modifier = Modifier
+                                .background(Color.Gray)
+                                .padding(start = 5.dp)
+                        ) {
+                            Text(
+                                text = "Do you remember",
+                                modifier = Modifier.fillMaxWidth(),
+                                color = Color.White
+                            )
+                            Text(
+                                text = "Pseudonym",
+                                modifier = Modifier.fillMaxWidth(),
+                                color = Color.White
+                            )
 
-                            Row {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(bottom = 1.dp, top = 50.dp),
+                                horizontalArrangement = SpaceBetween
+                            ) {
                                 Icon(
                                     painter = painterResource(
                                         id =
                                         R.drawable.ic_time
                                     ),
                                     contentDescription = " ",
-                                    modifier = Modifier.clickable { }
+                                    modifier = Modifier
+                                        .clickable { }
+                                        .align(Alignment.CenterVertically),
                                 )
                                 Icon(
                                     painter = painterResource(
@@ -297,7 +268,9 @@ fun Home() {
                                         R.drawable.ic_play
                                     ),
                                     contentDescription = " ",
-                                    modifier = Modifier.clickable { }
+                                    modifier = Modifier
+                                        .clickable { }
+                                        .align(Alignment.CenterVertically)
                                 )
                             }
                         }
@@ -306,10 +279,43 @@ fun Home() {
                 }
             }
 
-            Text(text = "Your Heavy Rotation", Modifier.size(15.dp))
+            Text(
+                text = "Your Heavy Rotation",
+                fontSize = 20.sp,
+                color = Color.White,
+                modifier = Modifier
+                    .size(width = 300.dp, height = 30.dp)
+                    .fillMaxWidth()
+            )
+            LazyRow {
+                items(5) { index ->
+                    Card(
+                        onClick = {}, modifier = Modifier
+                            .weight(0.10f)
+                            .padding(10.dp)
+                    ) {
+                        Image(
+                            modifier = Modifier
+                                .height(160.dp)
+                                .width(160.dp),
+                            painter = painterResource(
+                                id =
+                                when (index) {
+                                    0 -> R.drawable.phil_collins
+                                    1 -> R.drawable.acdc
+                                    2 -> R.drawable.gazo
+                                    3 -> R.drawable.peter_crowley
+                                    4 -> R.drawable.sabaton
+                                    5 -> R.drawable.telephone
+                                    else -> R.drawable.phil_collins
+                                }
+                            ),
+                            contentDescription = ""
+                        )
 
-            Row {
 
+                    }
+                }
             }
         }
     }
@@ -323,4 +329,10 @@ fun Chip(text: String, onClick: () -> Unit) {
     ) {
         Text(text = text, modifier = Modifier.padding(horizontal = 15.dp, vertical = 4.dp))
     }
+}
+
+@Preview
+@Composable
+fun PreviewHome() {
+    Home()
 }

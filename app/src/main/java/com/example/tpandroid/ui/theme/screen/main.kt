@@ -75,7 +75,7 @@ fun Main(){
                 Text(text = "là ya pas")
             }
             composable("login"){
-                Login()
+                Login(navController)
             }
         }
     }

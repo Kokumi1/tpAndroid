@@ -252,29 +252,35 @@ fun Home() {
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(bottom = 1.dp, top = 50.dp),
+                                    .padding(bottom = 12.dp, top = 50.dp),
                                 horizontalArrangement = SpaceBetween
                             ) {
                                 Icon(
                                     painter = painterResource(
                                         id =
-                                        R.drawable.ic_time
-                                    ),
-                                    contentDescription = " ",
-                                    modifier = Modifier
-                                        .clickable { }
-                                        .align(Alignment.CenterVertically),
-                                )
-                                Icon(
-                                    painter = painterResource(
-                                        id =
-                                        R.drawable.ic_play
+                                        R.drawable.ic_heart_empty
                                     ),
                                     contentDescription = " ",
                                     modifier = Modifier
                                         .clickable { }
                                         .align(Alignment.CenterVertically)
+                                        .padding(start = 12.dp),
                                 )
+                                Box(modifier = Modifier
+                                    .padding(end= 12.dp)
+                                    .align(Alignment.CenterVertically)
+                                    .clickable {}
+                                    .clip(CircleShape)
+                                    .background(Color.White)) {
+                                    Icon(
+                                        painter = painterResource(
+                                            id =
+                                            R.drawable.ic_play
+                                        ),
+                                        contentDescription = " "
+                                    )
+                                }
+
                             }
                         }
 

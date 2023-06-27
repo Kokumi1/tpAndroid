@@ -20,9 +20,9 @@ class MainActivity : ComponentActivity() {
             TpAndroidTheme {
                 val navController = rememberNavController()
 
-                NavHost(navController = navController, startDestination = "home") {
+                NavHost(navController = navController, startDestination = "login") {
                     composable("home") { Main() }
-                    composable("login"){ Login() }
+                    composable("login"){ Login(navController) }
                 }
             }
 

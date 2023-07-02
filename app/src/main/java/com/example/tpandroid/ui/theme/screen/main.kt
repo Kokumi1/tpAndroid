@@ -30,7 +30,7 @@ fun Main(){
                 NavigationBarItem(
                     selected = true,
                     onClick = { navController.navigate("home") },
-                    label = { Text(text = "Home") },
+                    label = { Text(text = "Home", color = Color.White) },
                     icon = {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_home),
@@ -41,7 +41,7 @@ fun Main(){
                 NavigationBarItem(
                     selected = true,
                     onClick = { navController.navigate("search") },
-                    label = { Text(text = "Search") },
+                    label = { Text(text = "Search", color = Color.White) },
                     icon = {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_search),
@@ -53,7 +53,7 @@ fun Main(){
                 NavigationBarItem(
                     selected = true,
                     onClick = { navController.navigate("library") },
-                    label = { Text(text = "Library") },
+                    label = { Text(text = "Library", color = Color.White) },
                     icon = {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_library_music),
@@ -72,7 +72,7 @@ fun Main(){
                 Search()
             }
             composable("library"){
-                Text(text = "là ya pas")
+                Library()
             }
             composable("login"){
                 Login(navController)

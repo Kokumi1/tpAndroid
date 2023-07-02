@@ -33,6 +33,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -50,6 +51,7 @@ fun Home() {
                 title = { Text(text = stringResource(id = R.string.home_meeting)) },
                 actions = {
                     IconButton(onClick = {}) {
+                        //History button
                         Row {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_clock),
@@ -59,6 +61,7 @@ fun Home() {
 
                     }
                     IconButton(onClick = {}) {
+                        //Settings
                         Icon(
                             painter = painterResource(id = R.drawable.ic_setting),
                             modifier = Modifier.padding(start= 2.dp),
@@ -154,6 +157,7 @@ fun Home() {
                                         else -> R.drawable.phil_collins
                                     }
                                 ),
+                                contentScale = ContentScale.Crop,
                                 contentDescription = ""
                             )
                             Box(
@@ -187,7 +191,7 @@ fun Home() {
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-
+                // New Release Line
                 Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
                     Row(modifier = Modifier.background(Color.Black)) {
                         AsyncImage(
@@ -231,6 +235,7 @@ fun Home() {
                             model = ImageRequest.Builder(LocalContext.current)
                                 .data("https://images.unsplash.com/photo-1679678691007-d663208cebd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80")
                                 .build(),
+                            contentScale = ContentScale.Crop,
                             contentDescription = ""
                         )
                         Column(
@@ -256,6 +261,7 @@ fun Home() {
                                 horizontalArrangement = SpaceBetween
                             ) {
                                 Icon(
+                                    //Like button
                                     painter = painterResource(
                                         id =
                                         R.drawable.ic_heart_empty
@@ -266,6 +272,7 @@ fun Home() {
                                         .align(Alignment.CenterVertically)
                                         .padding(start = 12.dp),
                                 )
+                                //Play button
                                 Box(modifier = Modifier
                                     .padding(end= 12.dp)
                                     .align(Alignment.CenterVertically)
@@ -297,6 +304,7 @@ fun Home() {
                     .fillMaxWidth()
             )
             LazyRow {
+                //Rotation
                 items(5) { index ->
                     Card(
                         onClick = {}, modifier = Modifier
@@ -319,6 +327,7 @@ fun Home() {
                                     else -> R.drawable.phil_collins
                                 }
                             ),
+                            contentScale = ContentScale.Crop,
                             contentDescription = ""
                         )
 
@@ -334,7 +343,7 @@ fun Home() {
 fun Chip(text: String, onClick: () -> Unit) {
     Card(
         shape = RoundedCornerShape(16.dp),
-        modifier = Modifier.clickable(onClick = onClick)
+        modifier = Modifier.clickable(onClick = onClick).padding(top = 5.dp)
     ) {
         Text(text = text, modifier = Modifier.padding(horizontal = 15.dp, vertical = 4.dp))
     }

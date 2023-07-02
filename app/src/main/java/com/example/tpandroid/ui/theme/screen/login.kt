@@ -2,10 +2,12 @@ package com.example.tpandroid.ui.theme.screen
 
 import android.util.Log
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,14 +24,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.tpandroid.R
@@ -55,18 +56,20 @@ fun Login(pNavController: NavController) {
         val firebaseAuth = Firebase.auth
 
         Column(
-            modifier = Modifier.padding(it).wrapContentSize(Alignment.Center),
+            modifier = Modifier
+                .padding(it)
+                .wrapContentSize(Alignment.Center),
             horizontalAlignment = Alignment.CenterHorizontally
 
         ) {
-            Text(
-                text = "Spotify",
+            //title
+            Image(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 20.dp, bottom = 100.dp),
-                fontSize = 40.sp,
-                textAlign = TextAlign.Center
-            )
+                    .padding(top = 20.dp, bottom = 100.dp)
+                    .height(80.dp),
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "logo")
 
             TextField(
                 value = emailTextField.value, onValueChange = { email ->
@@ -82,7 +85,7 @@ fun Login(pNavController: NavController) {
                 passwordTextFieldValue.value = password
             }, placeholder = { Text(text = stringResource(id = R.string.login_password)) },
             modifier = Modifier
-                .padding(bottom = 80.dp)
+                .padding(bottom = 70.dp)
                 .clip(shape = RoundedCornerShape(30.dp)),
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
@@ -92,6 +95,7 @@ fun Login(pNavController: NavController) {
                 .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ){
+                //register button
                 Button(onClick = {
                     Log.i("Auth", "register begin")
 
@@ -112,6 +116,7 @@ fun Login(pNavController: NavController) {
                 }, modifier = Modifier.padding(start=50.dp)) {
                     Text(text = stringResource(id = R.string.login_register_button))
                 }
+                //Login button
                 Button(onClick = {
 
                     Log.i("Auth", "login begin")

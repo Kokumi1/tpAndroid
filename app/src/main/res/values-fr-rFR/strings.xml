@@ -16,4 +16,9 @@
     <string name="search_playlists">Playlist</string>
     <string name="search_album">Album</string>
     <string name="search_featuring">Featuring</string>
+    <string name="library_title_music">Musique Podcasts</string>
+    <string name="library_nav_playlist">Playlists</string>
+    <string name="library_nav_artists">Artistes</string>
+    <string name="library_nav_albums">Albums</string>
+    <string name="library_title_podcasts">Podcasts</string>
 </resources>

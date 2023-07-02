@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
@@ -48,6 +49,7 @@ fun Search() {
     Scaffold {
         Column(modifier = Modifier.background(Color.White)) {
             Row(modifier = Modifier.padding(top = 5.dp)) {
+                //Search bar
                 TextField(value = searchText,
                     onValueChange = { searchText = it },
                     modifier = Modifier
@@ -97,6 +99,7 @@ fun Search() {
                 }
             }
             Row(Modifier.padding(top = 10.dp, start = 5.dp)) {
+                //Search result
                 Image(
                     painter = painterResource(id = R.drawable.peter_crowley),
                     contentDescription = "songs image",
@@ -124,6 +127,7 @@ fun Search() {
 
             }
 
+            //Featuring
             Text(
                 text = stringResource(id = R.string.search_featuring)+" $searchText",
                 modifier = Modifier
@@ -154,6 +158,7 @@ fun Search() {
                                     else -> R.drawable.phil_collins
                                 }
                             ),
+                            contentScale = ContentScale.Crop,
                             contentDescription = ""
                         )
                         Text(
@@ -179,6 +184,7 @@ fun Search() {
                         Image(
                             painter = painterResource(id = R.drawable.peter_crowley),
                             contentDescription = "songs image",
+                            contentScale = ContentScale.Crop,
                             modifier = Modifier.width(120.dp)
                         )
                         Column(modifier = Modifier.padding(start = 10.dp)) {

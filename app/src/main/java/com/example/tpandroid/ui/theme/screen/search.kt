@@ -33,9 +33,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,9 +49,11 @@ import com.example.tpandroid.R
 fun Search() {
     var searchText by remember { mutableStateOf("") }
     Scaffold {
-        Column(modifier = Modifier.background(Color.White)) {
+        Column(modifier = Modifier.background(colorResource(id = R.color.background))) {
             Row(modifier = Modifier.padding(top = 5.dp)) {
-                //Search bar
+                /**
+                 * Search bar
+                 */
                 TextField(value = searchText,
                     onValueChange = { searchText = it },
                     modifier = Modifier
@@ -74,6 +78,7 @@ fun Search() {
                 )
                 ClickableText(
                     text = AnnotatedString(stringResource(id = R.string.search_cancel)),
+                    style = TextStyle(color = Color.White),
                     onClick = { searchText = "" },
                     modifier = Modifier.padding(top = 20.dp, start = 5.dp)
                 )
@@ -98,7 +103,12 @@ fun Search() {
                     }
                 }
             }
-            Row(Modifier.padding(top = 10.dp, start = 5.dp)) {
+            Row(
+                Modifier
+                    .padding(top = 10.dp, start = 5.dp)
+                    .background(color = colorResource(id = R.color.background))
+            )
+            {
                 //Search result
                 Image(
                     painter = painterResource(id = R.drawable.peter_crowley),
@@ -109,17 +119,19 @@ fun Search() {
                         .clip(CircleShape)
                 )
                 Column(modifier = Modifier.padding(start = 5.dp)) {
-                    Text(text = "Peter Crowley")
-                    Text(text = stringResource(id = R.string.search_artist))
+                    Text(text = "Peter Crowley", color = Color.White)
+                    Text(text = stringResource(id = R.string.search_artist),color=Color.White)
                 }
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(80.dp),
+                        .height(80.dp)
+                        .background(color = colorResource(id = R.color.background)),
                     contentAlignment = Alignment.CenterEnd
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_continue),
+                        tint= Color.White,
                         contentDescription = "action",
                         modifier = Modifier.padding(end = 10.dp)
                     )
@@ -131,22 +143,26 @@ fun Search() {
             Text(
                 text = stringResource(id = R.string.search_featuring)+" $searchText",
                 modifier = Modifier
-                    .size(width = 350.dp, height = 25.dp)
+                    .size(width = 400.dp, height = 25.dp)
                     .fillMaxWidth()
-                    .padding(start = 10.dp),
-                fontSize = 20.sp
+                    .padding(start = 10.dp)
+                    .background(colorResource(id = R.color.background)),
+                fontSize = 20.sp,
+                color = Color.White
             )
             LazyRow(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 10.dp, top = 10.dp)
+                    .background(colorResource(id = R.color.background))
             ) {
                 items(5) { index ->
                     Column {
                         Image(
                             modifier = Modifier
                                 .height(100.dp)
-                                .width(100.dp),
+                                .width(100.dp)
+                                .padding(end = 5.dp),
                             painter = painterResource(
                                 id =
                                 when (index) {
@@ -169,7 +185,7 @@ fun Search() {
                                 3 -> "Peter Crowley"
                                 4 -> "Sabaton"
                                 else -> "No one"
-                            }
+                            }, color = Color.White
                         )
                     }
                 }
@@ -178,6 +194,7 @@ fun Search() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 10.dp, top = 20.dp)
+                    .background(colorResource(id = R.color.background))
             ) {
                 items(5) {
                     Row(modifier = Modifier.padding(bottom = 10.dp)) {
@@ -185,11 +202,13 @@ fun Search() {
                             painter = painterResource(id = R.drawable.peter_crowley),
                             contentDescription = "songs image",
                             contentScale = ContentScale.Crop,
-                            modifier = Modifier.width(120.dp)
+                            modifier = Modifier
+                                .width(120.dp)
+                                .height(120.dp)
                         )
                         Column(modifier = Modifier.padding(start = 10.dp)) {
-                            Text(text = "In the depths of the Church")
-                            Text(text = stringResource(id = R.string.search_songs)+" - Peter Crowley")
+                            Text(text = "In the depths of the Church",color= Color.White)
+                            Text(text = stringResource(id = R.string.search_songs)+" - Peter Crowley",color = Color.White)
                         }
                         Box(
                             modifier = Modifier
@@ -200,6 +219,8 @@ fun Search() {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_continue),
                                 contentDescription = "action",
+                                tint = Color.White,
+                                modifier = Modifier.padding(end= 10.dp)
                             )
                         }
                     }

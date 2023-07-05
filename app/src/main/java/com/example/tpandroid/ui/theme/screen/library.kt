@@ -18,6 +18,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,43 +40,49 @@ import com.example.tpandroid.R
 @Composable
 fun Library() {
     var type by remember { mutableStateOf(0) }
-    Scaffold(
+    Scaffold(modifier = Modifier.background(colorResource(id = R.color.background)),
         topBar = {
             Column {
                 TopAppBar(
                     title = {
-                        Row {
+                        Row(modifier = Modifier.background(colorResource(id = R.color.background))) {
                             Text(
-                                text = stringResource(id = R.string.library_title_music)
+                                text = stringResource(id = R.string.library_title_music),
+                                color = Color.White
                             )
                             Text(
                                 modifier = Modifier.padding(start = 20.dp),
                                 text = stringResource(id = R.string.library_title_podcasts),
-                                color = Color.DarkGray
+                                color = Color.Gray
                             )
                         }
-                    }
+                    },
+                    colors = TopAppBarDefaults.smallTopAppBarColors(
+                        containerColor = colorResource(id = R.color.background)
+                    )
                 )
                 NavigationBar(
-                    modifier = Modifier.height(35.dp)
+                    containerColor = colorResource(id = R.color.background),
+                    contentColor = Color.DarkGray
                 ) {
                     NavigationBarItem(
                         selected = type == 0,
                         onClick = { type = 0},
                         icon = {
-                            Text(text = stringResource(id = R.string.library_nav_playlist))
+                            Text(text = stringResource(id = R.string.library_nav_playlist), color = if(type!=0) Color.White else Color.Black)
                         })
+
                     NavigationBarItem(
                         selected = type == 1,
                         onClick = { type = 1},
                         icon = {
-                            Text(text = stringResource(id = R.string.library_nav_artists))
+                            Text(text = stringResource(id = R.string.library_nav_artists), color = if(type!=1) Color.White else Color.Black)
                         })
                     NavigationBarItem(
-                        selected = type ==2,
+                        selected = type == 2,
                         onClick = { type = 2},
                         icon = {
-                            Text(text = stringResource(id = R.string.library_nav_albums))
+                            Text(text = stringResource(id = R.string.library_nav_albums), color = if(type!=2) Color.White else Color.Black)
                         })
                 }
             }
@@ -84,7 +92,7 @@ fun Library() {
     ) {
         LazyColumn(
             modifier = Modifier
-                .background(color = Color.Black)
+                .background(color = colorResource(id = R.color.background))
                 .fillMaxWidth()
         ) {
             when (type) {
@@ -96,7 +104,7 @@ fun Library() {
                         Spacer(modifier = Modifier.padding(top = 110.dp))
                     }
                     items(8) { index ->
-                        Row(modifier = Modifier.padding(top = 10.dp, start = 20.dp)) {
+                        Row(modifier = Modifier.padding(top = 20.dp, start = 20.dp)) {
                             Image(
                                 modifier = Modifier
                                     .height(110.dp)

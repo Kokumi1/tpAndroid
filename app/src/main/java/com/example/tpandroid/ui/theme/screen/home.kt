@@ -32,8 +32,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,14 +50,15 @@ fun Home() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(id = R.string.home_meeting)) },
+                title = { Text(text = stringResource(id = R.string.home_meeting),color = Color.White) },
                 actions = {
                     IconButton(onClick = {}) {
                         //History button
                         Row {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_clock),
-                                contentDescription = " "
+                                contentDescription = " ",
+                                tint = Color.White
                             )
                         }
 
@@ -65,10 +68,14 @@ fun Home() {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_setting),
                             modifier = Modifier.padding(start= 2.dp),
-                            contentDescription = " "
+                            contentDescription = " ",
+                            tint = Color.White
                         )
                     }
-                }
+                },
+                colors = TopAppBarDefaults.smallTopAppBarColors(
+                    containerColor = colorResource(id = R.color.background)
+                )
             )
         },
         /*BottomAppBar(
@@ -115,7 +122,7 @@ fun Home() {
         Column(
             modifier = Modifier
                 .padding(it)
-                .background(Color.Black)
+                .background(colorResource(id = R.color.background))
         ) {
 
             Row(
@@ -140,7 +147,7 @@ fun Home() {
                         onClick = {}, modifier = Modifier
                             .weight(0.10f)
                     ) {
-                        Row {
+                        Row(modifier = Modifier.background(Color.DarkGray)) {
                             Image(
                                 modifier = Modifier
                                     .height(80.dp)
@@ -177,7 +184,7 @@ fun Home() {
                                         4 -> "Sabaton"
                                         5 -> "Téléphone"
                                         else -> "Phil Collins"
-                                    }
+                                    }, color = Color.White
                                 )
                             }
                         }
@@ -193,7 +200,7 @@ fun Home() {
             ) {
                 // New Release Line
                 Card(onClick = {}, modifier = Modifier.weight(0.10f)) {
-                    Row(modifier = Modifier.background(Color.Black)) {
+                    Row(modifier = Modifier.background(colorResource(id = R.color.background))) {
                         AsyncImage(
                             modifier = Modifier
                                 .height(60.dp)
@@ -240,7 +247,7 @@ fun Home() {
                         )
                         Column(
                             modifier = Modifier
-                                .background(Color.Gray)
+                                .background(Color.DarkGray)
                                 .padding(start = 5.dp)
                         ) {
                             Text(
@@ -266,6 +273,7 @@ fun Home() {
                                         id =
                                         R.drawable.ic_heart_empty
                                     ),
+                                    tint = Color.White,
                                     contentDescription = " ",
                                     modifier = Modifier
                                         .clickable { }

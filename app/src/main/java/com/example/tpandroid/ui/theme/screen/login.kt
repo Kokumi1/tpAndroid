@@ -1,7 +1,6 @@
 package com.example.tpandroid.ui.theme.screen
 
 import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -20,11 +19,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -34,6 +36,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.tpandroid.R
@@ -45,7 +48,6 @@ import com.google.firebase.ktx.Firebase
 @Composable
 fun Login(pNavController: NavController) {
 
-    val failedResource = stringResource(id = R.string.login_failed)
     val emailTextField = remember {
         mutableStateOf(TextFieldValue(""))
     }
@@ -57,6 +59,8 @@ fun Login(pNavController: NavController) {
         val context = LocalContext.current
         FirebaseApp.initializeApp(context)
         val firebaseAuth = Firebase.auth
+
+        var loginFailed by remember { mutableStateOf(false) }
 
         Column(
             modifier = Modifier
@@ -71,10 +75,24 @@ fun Login(pNavController: NavController) {
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 20.dp, bottom = 100.dp)
+                    .padding(top = 20.dp, bottom = 90.dp)
                     .height(80.dp),
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = "logo")
+
+            //message if the login fail
+            Row(modifier = Modifier.fillMaxWidth().height(30.dp),
+                horizontalArrangement = Arrangement.Center){
+                if(loginFailed){
+                    Text(text = stringResource(id = R.string.login_failed),
+                        color = Color.Red,
+                        fontSize = 20.sp,
+                        modifier = Modifier
+                            .background(Color.LightGray)
+                            .padding(horizontal = 10.dp))
+                }
+            }
+
 
             TextField(
                 value = emailTextField.value, onValueChange = { email ->
@@ -82,7 +100,7 @@ fun Login(pNavController: NavController) {
 
                 }, placeholder = { Text(text = stringResource(id = R.string.login_email)) },
                 modifier = Modifier
-                    .padding(bottom = 40.dp)
+                    .padding(bottom = 30.dp, top = 10.dp)
                     .clip(shape = RoundedCornerShape(30.dp))
             )
 
@@ -90,7 +108,7 @@ fun Login(pNavController: NavController) {
                 passwordTextFieldValue.value = password
             }, placeholder = { Text(text = stringResource(id = R.string.login_password)) },
             modifier = Modifier
-                .padding(bottom = 70.dp)
+                .padding(bottom = 60.dp)
                 .clip(shape = RoundedCornerShape(30.dp)),
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
@@ -101,23 +119,30 @@ fun Login(pNavController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween
             ){
                 //register button
+
                 Button(onClick = {
                     Log.i("Auth", "register begin")
 
-                    firebaseAuth.createUserWithEmailAndPassword(
-                        emailTextField.value.text, passwordTextFieldValue.value.text
-                    )
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                Log.i("Auth", "register complete!!")
-                                pNavController.navigate("home")
+                    if(emailTextField.value.text != "" && passwordTextFieldValue.value.text != "") {
+                        firebaseAuth.createUserWithEmailAndPassword(
+                            emailTextField.value.text, passwordTextFieldValue.value.text
+                        )
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Log.i("Auth", "register complete!!")
+                                    pNavController.navigate("home")
 
-                            } else if (task.isCanceled) {
-                                Log.e("Auth", "What are you doing?!")
+                                } else if (task.isCanceled) {
+                                    Log.e("Auth", "What are you doing?!")
+                                }
+                            }.addOnFailureListener {
+                                Log.e("Auth", "mission failed!")
                             }
-                        }.addOnFailureListener {
-                            Log.e("Auth", "mission failed!")
-                        }
+                    }
+                    else{
+                        loginFailed = true
+                        Log.e("Auth","no email/password")
+                    }
                 }, modifier = Modifier.padding(start=50.dp)) {
                     Text(text = stringResource(id = R.string.login_register_button))
                 }
@@ -125,25 +150,25 @@ fun Login(pNavController: NavController) {
                 Button(onClick = {
 
                     Log.i("Auth", "login begin")
+                    if(emailTextField.value.text != "" && passwordTextFieldValue.value.text != "") {
+                        firebaseAuth.signInWithEmailAndPassword(
+                            emailTextField.value.text, passwordTextFieldValue.value.text
+                        )
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.i("AUTH", "Login complete")
+                                    pNavController.navigate("home")
 
-                    firebaseAuth.signInWithEmailAndPassword(
-                        emailTextField.value.text, passwordTextFieldValue.value.text
-                    )
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.i("AUTH", "Login complete")
-                                pNavController.navigate("home")
-
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Toast.makeText(
-                                    context,
-                                    failedResource,
-                                    Toast.LENGTH_LONG,
-                                ).show()
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    loginFailed = true
+                                }
                             }
-                        }
+                    }else{
+                        loginFailed = true
+                        Log.e("Auth","no email/password")
+                    }
                 }, modifier = Modifier.padding(end=50.dp)) {
                     Text(text = stringResource(id = R.string.login_login_button))
                 }
